@@ -4,19 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Word Guess</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <div>
+    <div class="mainPage">
         <p id="directions-text">Welcome to the Word Guess Game! Press any letter to start playing!</p>
-        <p id="Instructions">Guess what letter i'm thinking of...?</p>
+
+
+    </div>
+
+    <div>
+
+        <p id="intro-text">Guess what letter i'm thinking of...?</p>
         <p id="userchoice-text"></p>
         <p id="computerchoice-text"></p>
         <p id="wins-text"></p>
         <p id="losses-text"></p>
         <p id="tries-text"></p>
-        <p id="letter-text"></p>
+        <img src="assets/images/pug.png" alt="Dog Face" style="width:230px">
     </div>
 
     <script type="text/javascript">
@@ -28,17 +38,19 @@
         var wins = 0;
         var losses = 0;
         var tries = 10;
-        var letter = 0;
+
         // Randomly chooses a choice from the options array. This is the Computer's guess.
 
         // Create variables that hold references to the places in the HTML where we want to display things.
+        var introText = document.getElementById("intro-text");
         var directionsText = document.getElementById("directions-text");
         var userChoiceText = document.getElementById("userchoice-text");
         var computerChoiceText = document.getElementById("computerchoice-text");
         var winsText = document.getElementById("wins-text");
         var lossesText = document.getElementById("losses-text");
         var triesText = document.getElementById("tries-text");
-        var letterText = document.getElementById("letter-text");
+
+
         // This function is run whenever the user presses a key.
 
         var computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
@@ -55,6 +67,7 @@
             // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
             if ((userGuess === computerGuess)) {
                 alert("Congratulations! The letter: " + computerGuess + " Is correct!")
+
                 wins++;
                 computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 
@@ -65,19 +78,23 @@
             if (tries === 0) {
                 alert("So sorry. The correct answer is letter: " + computerGuess + " Try again?")
                 tries = 10;
-                computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 
                 losses++;
+                computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+
             }
             // Hide the directions
             directionsText.textContent = "";
+
             // Display the user and computer guesses, and wins/losses/ties.
+            introText.textContent = "Guess what letter i'm thinking of...?";
             userChoiceText.textContent = "You chose: " + userGuess;
             computerChoiceText.textContent = "The computer's letter: ???";
             winsText.textContent = "Wins: " + wins;
             lossesText.textContent = "Losses: " + losses;
             triesText.textContent = "Tries remaining: " + tries;
-            letterText.textContent = "Your letter:" + userGuess;
+
 
         };
     </script>
